@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSprict : MonoBehaviour
 {
     public Camera playerCamera;//プレイヤーカメラ
-    public GameObject tangPoint;//掴んだ肉を配置する位置
+    public TongController tong;//トング
     public ScoreDrawer scoreManager;//スコアを管理するクラス
 
     //掴んでいる肉々
@@ -43,6 +43,9 @@ public class PlayerSprict : MonoBehaviour
                 grabGameObjects.Add(hit.collider.gameObject);
                 scoreManager.AddLivingMeetCount();//スコア加算
                 hit.collider.gameObject.layer = grabbingNikuLayer;//掴んだ肉のレイヤー変更
+
+                //トングのアニメーション
+                //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
             }
         }
         else {
@@ -58,7 +61,7 @@ public class PlayerSprict : MonoBehaviour
         //掴んだ肉の位置を固定
         foreach (Rigidbody body in grabRigidBodys)
         {
-            body.position = tangPoint.transform.position;
+            body.position = tong.GetTongHandPosition();
         }
     }
 }
