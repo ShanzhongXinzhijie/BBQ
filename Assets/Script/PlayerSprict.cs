@@ -8,6 +8,11 @@ public class PlayerSprict : MonoBehaviour
     public TongController tong;//トング
     public ScoreDrawer scoreManager;//スコアを管理するクラス
 
+    public float canCatchTimeSec = 0.5f;//クリックしてからキャッチ可能な時間
+    public float catchRenge = 6.0f;//キャッチ可能な最大距離
+
+    float inputTime = 0.0f;//クリック入力時間
+
     //掴んでいる肉々
     List<Rigidbody> grabRigidBodys = new List<Rigidbody>();
     List<GameObject> grabGameObjects = new List<GameObject>();
@@ -32,23 +37,33 @@ public class PlayerSprict : MonoBehaviour
         //左クリックで取る
         if (Input.GetMouseButton(0))
         {
-            //肉たちとレイで判定
-            int layerMask = LayerMask.GetMask(new string[] { LayerMask.LayerToName(nikuLayer) });
-            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, layerMask))
+            //入力時間がキャッチ可能時間以内なら
+            if (inputTime < canCatchTimeSec)
             {
-                //Debug.Log(hit.point);
-                grabRigidBodys.Add(hit.rigidbody);//リストに掴んだものを追加
-                grabGameObjects.Add(hit.collider.gameObject);
-                scoreManager.AddLivingMeetCount();//スコア加算
-                hit.collider.gameObject.layer = grabbingNikuLayer;//掴んだ肉のレイヤー変更
+                //入力時間加算
+                inputTime += Time.deltaTime;
 
-                //トングのアニメーション
-                //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
+                //肉たちとレイで判定
+                int layerMask = LayerMask.GetMask(new string[] { LayerMask.LayerToName(nikuLayer) });
+                Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, catchRenge, layerMask))//Mathf.Infinity
+                {
+                    //Debug.Log(hit.point);
+                    grabRigidBodys.Add(hit.rigidbody);//リストに掴んだものを追加
+                    grabGameObjects.Add(hit.collider.gameObject);
+                    scoreManager.AddLivingMeetCount();//スコア加算
+                    hit.collider.gameObject.layer = grabbingNikuLayer;//掴んだ肉のレイヤー変更
+
+                    //トングのアニメーション
+                    //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
+                }
             }
         }
         else {
+            //入力時間リセット
+            inputTime = 0.0f;
+
             //肉を放す
             foreach (GameObject go in grabGameObjects)
             {
