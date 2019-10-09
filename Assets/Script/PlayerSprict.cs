@@ -94,6 +94,12 @@ public class PlayerSprict : MonoBehaviour
                     inputTime = 0.0f;
                     //コンボ中にする
                     isConbo = true;
+                    scoreManager.AddConbo();
+                    if (scoreManager.GetConbo() > 1)
+                    {
+                        //コンボの追加特典
+                        scoreManager.AddScore(scoreManager.GetConbo()-1);
+                    }
 
                     //トングのアニメーション
                     //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
@@ -105,7 +111,8 @@ public class PlayerSprict : MonoBehaviour
             inputTime = 0.0f;
             //コンボ中でない
             isConbo = false;
-            
+            scoreManager.ResetConbo();
+
             //肉を放す
             foreach (GameObject go in grabGameObjects)
             {

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NikuScript : MonoBehaviour
 {
+    //あたった的のID
+    HashSet<int> hitedMatoSet = new HashSet<int>();
+
     //レイヤー
     int deathNikuLayer;
     int hoboDeathNikuLayer;
@@ -34,5 +37,20 @@ public class NikuScript : MonoBehaviour
                 col.gameObject.layer = hoboDeathNikuLayer;
             }
         }
+    }
+
+    /// <summary>
+    /// あたった的の追加
+    /// </summary>
+    public void AddHitedMatoID(int ID)
+    {
+        hitedMatoSet.Add(ID);
+    }
+    /// <summary>
+    /// 引数の的とすでにあたっているか判定
+    /// </summary>
+    public bool ContainsHitedMatoID(int ID)
+    {
+        return hitedMatoSet.Contains(ID);
     }
 }
