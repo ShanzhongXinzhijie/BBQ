@@ -10,6 +10,11 @@ public class CountDown : MonoBehaviour
     void Start()
     {
         time = 60;
+        UpdateText();
+
+        //初期化したらこのコンポーネント無効化
+        //後でStartCountDownに有効化してもらう
+        enabled = false;
     }
     void Update()
     {
@@ -17,8 +22,13 @@ public class CountDown : MonoBehaviour
         {
             time -= Time.deltaTime;
         }
+        UpdateText();
+    }
+
+    void UpdateText()
+    {
         int t = Mathf.FloorToInt(time);
         m_timeText.text = "Time:" + t;
     }
-    
+
 }
