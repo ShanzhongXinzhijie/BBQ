@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class CountDown : MonoBehaviour
             time -= Time.deltaTime;
         }
         UpdateText();
+
+        //ゲーム終了
+        if (time < 0.0f)
+        {
+            SceneManager.LoadScene("ResultFinal");
+        }
     }
 
     void UpdateText()

@@ -44,9 +44,14 @@ public class PlayerSprict : MonoBehaviour
         //左クリックで取る
         if (Input.GetMouseButton(0))
         {
+            //コンボ終了
+            if (inputTime > canComboTimeSec) {
+                ConboEnd();
+            }
+
             //入力時間がキャッチ可能時間以内なら
             //またはコンボ中なら
-            if (inputTime < canCatchTimeSec || isConbo && inputTime < canComboTimeSec)
+            if (inputTime < canCatchTimeSec || isConbo)
             {
                 //入力時間加算
                 inputTime += Time.deltaTime;
@@ -109,9 +114,8 @@ public class PlayerSprict : MonoBehaviour
         else {
             //入力時間リセット
             inputTime = 0.0f;
-            //コンボ中でない
-            isConbo = false;
-            scoreManager.ResetConbo();
+            //コンボ終了
+            ConboEnd();
 
             //肉を放す
             foreach (GameObject go in grabGameObjects)
@@ -136,5 +140,14 @@ public class PlayerSprict : MonoBehaviour
             canCatchTimeSec = Mathf.Infinity;
             catchRenge = Mathf.Infinity;
         }
+    }
+
+    /// <summary>
+    /// コンボ終了
+    /// </summary>
+    void ConboEnd()
+    {
+        isConbo = false;
+        scoreManager.ResetConbo();
     }
 }
