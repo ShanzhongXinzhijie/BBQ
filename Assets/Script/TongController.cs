@@ -16,7 +16,7 @@ public class TongController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originPos = transform.position;//原点初期化
+        originPos = transform.localPosition;//原点初期化
     }
 
     // Update is called once per frame
@@ -27,8 +27,8 @@ public class TongController : MonoBehaviour
         //右クリックでトングを持つ手切り替え
         if (Input.GetMouseButtonDown(1))
         {
-            transform.position = new Vector3(transform.position.x  * - 1.0f, transform.position.y, transform.position.z);
-            originPos = transform.position;
+            transform.localPosition = new Vector3(transform.localPosition.x  * - 1.0f, transform.localPosition.y, transform.localPosition.z);
+            originPos = transform.localPosition;
             //mousePos.x -= Screen.width / 2; mousePos.y -= Screen.height / 2;
             //mousePos *= 2.0f;
             //mousePos.x += Screen.width / 2; mousePos.y += Screen.height / 2;
@@ -48,7 +48,7 @@ public class TongController : MonoBehaviour
         }
         else
         {
-            transform.position = originPos;
+            transform.localPosition = originPos;
         }
     }
 
