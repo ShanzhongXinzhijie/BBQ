@@ -47,7 +47,7 @@ public class MeetGenerator : MonoBehaviour
         }
         else
         {
-            m_meetPos.y += meetAdd;
+            m_meetPos.z += meetAdd;
         }
 
         
