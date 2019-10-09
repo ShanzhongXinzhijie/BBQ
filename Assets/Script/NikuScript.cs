@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaichiScript : MonoBehaviour
+public class NikuScript : MonoBehaviour
 {
-    public ScoreDrawer scoreManager;//スコアを管理するクラス
-
     //レイヤー
     int deathNikuLayer;
     int hoboDeathNikuLayer;
@@ -15,9 +13,9 @@ public class DaichiScript : MonoBehaviour
     void Start()
     {
         //レイヤー初期化
-        deathNikuLayer = LayerMask.NameToLayer("DeathNiku");
-        hoboDeathNikuLayer = LayerMask.NameToLayer("HoboDeathNiku");
         nikuLayer = LayerMask.NameToLayer("NikuYasai");
+        hoboDeathNikuLayer = LayerMask.NameToLayer("HoboDeathNiku");
+        deathNikuLayer = LayerMask.NameToLayer("DeathNiku");
     }
 
     // Update is called once per frame
@@ -25,14 +23,16 @@ public class DaichiScript : MonoBehaviour
     {
         
     }
-
     void OnCollisionEnter(Collision col)
     {
-        //肉が地面に落ちた
-        if(col.gameObject.layer == nikuLayer || col.gameObject.layer == hoboDeathNikuLayer)
+        //自分は死んだ肉か？
+        if (this.gameObject.layer == deathNikuLayer || this.gameObject.layer == hoboDeathNikuLayer)
         {
-            col.gameObject.layer = deathNikuLayer;
-            scoreManager.AddDeathMeetCount();
+            //肉が落ちた
+            if (col.gameObject.layer == nikuLayer)
+            {
+                col.gameObject.layer = hoboDeathNikuLayer;
+            }
         }
     }
 }

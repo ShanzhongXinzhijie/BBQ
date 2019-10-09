@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2449933405333714849}
   - component: {fileID: 2449933405333714878}
   - component: {fileID: 2449933405333714850}
+  - component: {fileID: -941891640859270703}
   m_Layer: 8
-  m_Name: niku
+  m_Name: Niku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,3 +110,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-941891640859270703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449933405333714879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56de07f7a82c3468824273f27b43a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

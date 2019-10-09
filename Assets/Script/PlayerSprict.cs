@@ -7,11 +7,16 @@ public class PlayerSprict : MonoBehaviour
     public Camera playerCamera;//プレイヤーカメラ
     public TongController tong;//トング
     public ScoreDrawer scoreManager;//スコアを管理するクラス
+    public GameObject dysonText;//ダイソンモード時に有効化するオブジェクト
 
-    public float canCatchTimeSec = 0.5f;//クリックしてからキャッチ可能な時間
+    public float canCatchTimeSec = 0.125f;//クリックしてからキャッチ可能な時間
+    public float canComboTimeSec = 0.5f;//キャッチしてからコンボ可能な時間
     public float catchRenge = 6.0f;//キャッチ可能な最大距離
 
     float inputTime = 0.0f;//クリック入力時間
+    bool isConbo = false;//コンボ中か?
+
+    bool isDyson = false;//ダイソンか?
 
     //掴んでいる肉々
     List<Rigidbody> grabRigidBodys = new List<Rigidbody>();
@@ -20,6 +25,7 @@ public class PlayerSprict : MonoBehaviour
     //レイヤー
     int nikuLayer;
     int grabbingNikuLayer;
+    int hoboDeathNikuLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +35,7 @@ public class PlayerSprict : MonoBehaviour
         //レイヤー初期化
         nikuLayer = LayerMask.NameToLayer("NikuYasai");
         grabbingNikuLayer = LayerMask.NameToLayer("GrabbingNikuYasai");
+        hoboDeathNikuLayer = LayerMask.NameToLayer("HoboDeathNiku");
     }
 
     // Update is called once per frame
@@ -38,13 +45,23 @@ public class PlayerSprict : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             //入力時間がキャッチ可能時間以内なら
-            if (inputTime < canCatchTimeSec)
+            //またはコンボ中なら
+            if (inputTime < canCatchTimeSec || isConbo && inputTime < canComboTimeSec)
             {
                 //入力時間加算
                 inputTime += Time.deltaTime;
 
                 //肉たちとレイで判定
-                int layerMask = LayerMask.GetMask(new string[] { LayerMask.LayerToName(nikuLayer) });
+                int layerMask;
+                if (isDyson)// || isConbo && inputTime < canComboTimeSec)//ダイソンモード or コンボ中 なら
+                {
+                    //肉の上に落ちた肉掴める
+                    layerMask = LayerMask.GetMask(new string[] { LayerMask.LayerToName(nikuLayer), LayerMask.LayerToName(hoboDeathNikuLayer) });
+                }
+                else
+                {
+                    layerMask = LayerMask.GetMask(new string[] { LayerMask.LayerToName(nikuLayer) });
+                }
                 Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, catchRenge, layerMask))//Mathf.Infinity
@@ -55,6 +72,11 @@ public class PlayerSprict : MonoBehaviour
                     scoreManager.AddLivingMeetCount();//スコア加算
                     hit.collider.gameObject.layer = grabbingNikuLayer;//掴んだ肉のレイヤー変更
 
+                    //入力時間リセット
+                    inputTime = 0.0f;
+                    //コンボ中にする
+                    isConbo = true;
+
                     //トングのアニメーション
                     //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
                 }
@@ -63,7 +85,9 @@ public class PlayerSprict : MonoBehaviour
         else {
             //入力時間リセット
             inputTime = 0.0f;
-
+            //コンボ中でない
+            isConbo = false;
+            
             //肉を放す
             foreach (GameObject go in grabGameObjects)
             {
@@ -77,6 +101,15 @@ public class PlayerSprict : MonoBehaviour
         foreach (Rigidbody body in grabRigidBodys)
         {
             body.position = tong.GetTongHandPosition();
+        }
+
+        //ダイソンモード
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            isDyson = true;
+            dysonText.SetActive(true);
+            canCatchTimeSec = Mathf.Infinity;
+            catchRenge = Mathf.Infinity;
         }
     }
 }
