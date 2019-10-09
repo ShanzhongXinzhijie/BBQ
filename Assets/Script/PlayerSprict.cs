@@ -66,7 +66,25 @@ public class PlayerSprict : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, catchRenge, layerMask))//Mathf.Infinity
                 {
-                    //Debug.Log(hit.point);
+                    //落下中の肉ならスコア加算
+                    if (hit.collider.gameObject.layer == nikuLayer)
+                    {
+                        int score=1;
+                        //高さに応じたスコア加算
+                        const float nikuHeightMax = 5.0f - 1.0f;//高いところの敷居
+                        const float nikuHeightMin = 1.0f;       //低いところの敷居
+                        if (hit.rigidbody.position.y > nikuHeightMax)//高いところで取った
+                        {
+                            score += 4;
+                        }
+                        if (hit.rigidbody.position.y < nikuHeightMin)//地面スレスレで取った
+                        {
+                            score += 2;
+                        }
+                        //加算
+                        scoreManager.AddScore(score);
+                    }
+
                     grabRigidBodys.Add(hit.rigidbody);//リストに掴んだものを追加
                     grabGameObjects.Add(hit.collider.gameObject);
                     scoreManager.AddLivingMeetCount();//スコア加算

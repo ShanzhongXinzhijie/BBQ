@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ScoreDrawer : MonoBehaviour
 {
-    public Text livingText, deathText;
+    public Text livingText, deathText, scoreText;
 
     int livingMeet = 0;
     int deathMeet = 0;
+    int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,15 @@ public class ScoreDrawer : MonoBehaviour
     {
         livingText.text = livingMeet.ToString() + "肉生存";
         deathText.text = deathMeet.ToString() + "肉死亡";
+        scoreText.text = "SCORE : " + score.ToString();
+    }
+
+    /// <summary>
+    /// スコアの増加
+    /// </summary>
+    public void AddScore(int addPoint)
+    {
+        score += addPoint;
     }
 
     /// <summary>
