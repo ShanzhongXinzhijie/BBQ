@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NikuScript : MonoBehaviour
 {
+    //爆発
+    bool isExplosion = false;
+
     //あたった的のID
     HashSet<int> hitedMatoSet = new HashSet<int>();
 
@@ -37,6 +40,31 @@ public class NikuScript : MonoBehaviour
                 col.gameObject.layer = hoboDeathNikuLayer;
             }
         }
+
+        //爆発
+        if (isExplosion)
+        {
+            const float radius = 50.0f;
+            const float power = 1000.0f;
+            Vector3 explosionPos = transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                    rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+            }
+            isExplosion = false;
+        }
+    }
+
+    /// <summary>
+    /// 爆発属性を付与
+    /// </summary>
+    public void SetIsExplosion()
+    {
+        isExplosion = true;
     }
 
     /// <summary>

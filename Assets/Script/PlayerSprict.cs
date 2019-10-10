@@ -18,6 +18,8 @@ public class PlayerSprict : MonoBehaviour
 
     bool isDyson = false;//ダイソンか?
 
+    bool isExplosion = false;
+
     //掴んでいる肉々
     List<Rigidbody> grabRigidBodys = new List<Rigidbody>();
     List<GameObject> grabGameObjects = new List<GameObject>();
@@ -113,6 +115,12 @@ public class PlayerSprict : MonoBehaviour
                     //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
                 }
             }
+
+            //中クリックで肉を爆弾にする
+            if (Input.GetMouseButton(2) && grabGameObjects.Count > 0)
+            {
+                isExplosion = true;
+            }
         }
         else {
             //入力時間リセット
@@ -124,9 +132,16 @@ public class PlayerSprict : MonoBehaviour
             foreach (GameObject go in grabGameObjects)
             {
                 go.layer = nikuLayer;//掴んでる肉のレイヤー戻す
+                //肉を爆弾にする
+                if (isExplosion)
+                {
+                    NikuScript niku = go.GetComponent<NikuScript>();
+                    if (niku) { niku.SetIsExplosion(); }
+                }
             }
             grabRigidBodys.Clear();//リストをクリア
             grabGameObjects.Clear();
+            isExplosion = false;
         }
 
         //掴んだ肉の位置を固定
