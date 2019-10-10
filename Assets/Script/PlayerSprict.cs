@@ -95,6 +95,9 @@ public class PlayerSprict : MonoBehaviour
                     scoreManager.AddLivingMeetCount();//スコア加算
                     hit.collider.gameObject.layer = grabbingNikuLayer;//掴んだ肉のレイヤー変更
 
+                    //肉の抗力変更
+                    hit.rigidbody.drag = 0.0f;
+
                     //入力時間リセット
                     inputTime = 0.0f;
                     //コンボ中にする
