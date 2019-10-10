@@ -868,8 +868,8 @@ MonoBehaviour:
   tong: {fileID: 1156539856}
   scoreManager: {fileID: 1167354473}
   dysonText: {fileID: 1114972003}
-  canCatchTimeSec: 0.125
-  canComboTimeSec: 0.5
+  canCatchTimeSec: 0.115
+  canComboTimeSec: 1.25
   catchRenge: 6
 --- !u!4 &650184989
 Transform:
