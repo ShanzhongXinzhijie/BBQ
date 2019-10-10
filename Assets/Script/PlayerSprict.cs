@@ -46,6 +46,8 @@ public class PlayerSprict : MonoBehaviour
         //左クリックで取る
         if (Input.GetMouseButton(0))
         {
+            bool isCatch = false;
+
             //コンボ終了
             if (inputTime > canComboTimeSec) {
                 ConboEnd();
@@ -92,6 +94,7 @@ public class PlayerSprict : MonoBehaviour
                         scoreManager.AddScore(score);
                     }
 
+                    isCatch = true;
                     grabRigidBodys.Add(hit.rigidbody);//リストに掴んだものを追加
                     grabGameObjects.Add(hit.collider.gameObject);
                     scoreManager.AddLivingMeetCount();//スコア加算
@@ -114,6 +117,12 @@ public class PlayerSprict : MonoBehaviour
                     //トングのアニメーション
                     //tong.Shot((hit.rigidbody.position - tong.GetTongHandPosition()).magnitude);
                 }
+            }
+
+            //肉をキャッチできなかった
+            if (!isCatch)
+            {
+
             }
 
             //中クリックで肉を爆弾にする
