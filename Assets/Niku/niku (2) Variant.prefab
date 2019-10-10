@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 8124220370506063332, guid: 8894d57bb2fc81a4a90fb719fc3b8102,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8936563
+      value: 3.6345596
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8894d57bb2fc81a4a90fb719fc3b8102, type: 3}
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 2449933405333714879, guid: 24e708f6782a76847be8d57d83969c19,
         type: 3}
       propertyPath: m_Name
-      value: niku (2)
+      value: niku (2) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2449933405333714851, guid: 24e708f6782a76847be8d57d83969c19,
         type: 3}

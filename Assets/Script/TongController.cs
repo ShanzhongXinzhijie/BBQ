@@ -36,7 +36,8 @@ public class TongController : MonoBehaviour
         mousePos.z = 10;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         transform.LookAt(mousePos);
-        transform.Rotate(Vector3.right*90.0f);
+        transform.Rotate(Vector3.right*(90.0f));
+        transform.Rotate(Vector3.forward * 90.0f);
 
         //射撃
         const float shotMaxTimeSec = 0.1f;
