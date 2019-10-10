@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
+    public ScoreDrawer scoreManager;
     public Text m_timeText;
     public static float time;
     void Start()
@@ -28,6 +29,7 @@ public class CountDown : MonoBehaviour
         //ゲーム終了
         if (time < 0.0f)
         {
+            scoreManager.GameEnd();//スコア計測
             SceneManager.LoadScene("ResultFinal");
         }
     }

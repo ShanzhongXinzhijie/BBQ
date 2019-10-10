@@ -1882,6 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92389cdb101f3f84886e599fafa0fb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 1167354473}
   m_timeText: {fileID: 2011573249}
 --- !u!1001 &1201035783
 PrefabInstance:
@@ -2263,7 +2264,7 @@ PrefabInstance:
     - target: {fileID: 2449933405333714851, guid: 24e708f6782a76847be8d57d83969c19,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.017
+      value: -0.174
       objectReference: {fileID: 0}
     - target: {fileID: 2449933405333714851, guid: 24e708f6782a76847be8d57d83969c19,
         type: 3}

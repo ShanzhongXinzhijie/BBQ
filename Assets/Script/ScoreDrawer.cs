@@ -3,18 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public struct ResultData
+{
+    public int livingMeet;
+    public int deathMeet;
+    public int score;
+
+    public int hoboDeathMeat;
+    public int fastKill;
+    public int girigiriKill;
+    public int maxConbo;
+    public int matoCnt10, matoCnt100, matoCnt100000;
+    public int saraNiku;
+}
+
 public class ScoreDrawer : MonoBehaviour
 {
     public Text livingText, deathText, scoreText, conboText;
 
-    int livingMeet = 0;
-    int deathMeet = 0;
-    int score = 0;
+    static ResultData resultData;
+    public static ResultData GetResultData()
+    {
+        return resultData;
+    }
+
     int conboNum = 0;
+
+    //レイヤー
+    int hoboDeathNikuLayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        resultData = new ResultData();
+
+        hoboDeathNikuLayer = LayerMask.NameToLayer("HoboDeathNiku");
+    }
+
+    public void GameEnd()
+    {
+        CountHoboDeathMeetCount();
     }
 
     // Update is called once per frame
@@ -25,9 +53,9 @@ public class ScoreDrawer : MonoBehaviour
     void LateUpdate()
     {
         //テキストの更新
-        livingText.text = livingMeet.ToString() + "肉生存";
-        deathText.text = deathMeet.ToString() + "肉死亡";
-        scoreText.text = "SCORE : " + score.ToString();
+        livingText.text = resultData.livingMeet.ToString() + "肉生存";
+        deathText.text = resultData.deathMeet.ToString() + "肉死亡";
+        scoreText.text = "SCORE : " + resultData.score.ToString();
         conboText.text = conboNum.ToString();
     }
 
@@ -49,6 +77,11 @@ public class ScoreDrawer : MonoBehaviour
         {
             conboText.gameObject.SetActive(true);
         }
+        //最大コンボ更新
+        if(conboNum > resultData.maxConbo)
+        {
+            resultData.maxConbo = conboNum;
+        }
     }
     /// <summary>
     /// コンボ数のリセット
@@ -64,7 +97,7 @@ public class ScoreDrawer : MonoBehaviour
     /// </summary>
     public void AddScore(int addPoint)
     {
-        score += addPoint;
+        resultData.score += addPoint;
     }
 
     /// <summary>
@@ -72,10 +105,51 @@ public class ScoreDrawer : MonoBehaviour
     /// </summary>
     public void AddLivingMeetCount()
     {
-        livingMeet++;
+        resultData.livingMeet++;
+    }
+    public void CountHoboDeathMeetCount()
+    {
+        resultData.hoboDeathMeat = 0;
+        GameObject[] hobos = GameObject.FindGameObjectsWithTag("Niku");
+        foreach (GameObject hobo in hobos)
+        {
+            if(hobo.layer == hoboDeathNikuLayer) { resultData.hoboDeathMeat++; }
+        }
     }
     public void AddDeathMeetCount()
     {
-        deathMeet++;
+        resultData.deathMeet++;
     }
+
+    public void AddFastKillCnt()
+    {
+        resultData.fastKill++;
+    }
+    public void AddGiriGiriKillCnt()
+    {
+        resultData.girigiriKill++;
+    }
+    public void AddMatoCnt(int matoPoint)
+    {
+        switch (matoPoint)
+        {
+            case 10:
+                resultData.matoCnt10++;
+                break;
+            case 100:
+                resultData.matoCnt100++;
+                break;
+            case 100000:
+                resultData.matoCnt100000++;
+                break;
+            default:
+                Debug.LogError("何だこの的は");
+                break;
+        }
+    }
+    //public void AddMatoCnt100000()
+    //{
+    //    resultData.saraNiku++;
+    //}
+    //public int ;
 }

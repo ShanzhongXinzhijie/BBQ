@@ -80,11 +80,11 @@ public class PlayerSprict : MonoBehaviour
                         const float nikuHeightMin = 1.0f;       //低いところの敷居
                         if (hit.rigidbody.position.y > nikuHeightMax)//高いところで取った
                         {
-                            score += 4;
+                            score += 4; scoreManager.AddFastKillCnt();
                         }
                         if (hit.rigidbody.position.y < nikuHeightMin)//地面スレスレで取った
                         {
-                            score += 2;
+                            score += 2; scoreManager.AddGiriGiriKillCnt();
                         }
                         //加算
                         scoreManager.AddScore(score);

@@ -28,6 +28,7 @@ public class MatoScript : MonoBehaviour
             {
                 nikuScript.AddHitedMatoID(gameObject.GetInstanceID());//肉にこの的のIDを追加
                 scoreManager.AddScore(hitScore);//スコア加算
+                scoreManager.AddMatoCnt(hitScore);//的のヒット数増やす
             }
 
         }
