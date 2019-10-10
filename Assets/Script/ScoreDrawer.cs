@@ -120,6 +120,10 @@ public class ScoreDrawer : MonoBehaviour
     {
         resultData.deathMeet++;
     }
+    public void SubDeathMeetCount()
+    {
+        resultData.deathMeet--;
+    }
 
     public void AddFastKillCnt()
     {

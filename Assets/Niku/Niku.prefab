@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56de07f7a82c3468824273f27b43a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yakiniku: {fileID: 1594048825030893474, guid: 8aecafc967f2a9e47b72cc758fbcc693,
+    type: 3}

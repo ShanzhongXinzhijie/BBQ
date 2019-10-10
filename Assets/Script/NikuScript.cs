@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class NikuScript : MonoBehaviour
 {
+    public GameObject yakiniku;
+
+    bool isYakiniku = false;
+
     //爆発
     bool isExplosion = false;
 
@@ -51,12 +55,44 @@ public class NikuScript : MonoBehaviour
             foreach (Collider hit in colliders)
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
-
                 if (rb != null)
+                {
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+                }
+                if (hit.gameObject.layer == deathNikuLayer || hit.gameObject.layer == hoboDeathNikuLayer)
+                {
+                    NikuScript niku = hit.GetComponent<NikuScript>();
+                    if (niku != null)
+                    {
+                        niku.Yakiniku();
+                    }
+                }
+                //肉蘇生
+                //if (hit.gameObject.layer == deathNikuLayer || hit.gameObject.layer == hoboDeathNikuLayer)
+                //{
+                //    hit.gameObject.layer = nikuLayer;
+                //}
             }
             isExplosion = false;
         }
+    }
+
+    public void Yakiniku()
+    {
+        if (isYakiniku) { return; }
+
+        isYakiniku = true;
+
+        Vector3 pos = gameObject.transform.GetChild(0).gameObject.transform.localPosition;
+        Quaternion rot = gameObject.transform.GetChild(0).gameObject.transform.localRotation;
+        Vector3 scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
+        Destroy(gameObject.transform.GetChild(0).gameObject);
+
+        GameObject newModel = Instantiate(yakiniku);
+        newModel.transform.parent = gameObject.transform;
+        newModel.transform.localPosition = pos;
+        newModel.transform.localRotation = rot;
+        newModel.transform.localScale = scale;
     }
 
     /// <summary>
@@ -64,6 +100,7 @@ public class NikuScript : MonoBehaviour
     /// </summary>
     public void SetIsExplosion()
     {
+        if (!isYakiniku) { return; }
         isExplosion = true;
     }
 

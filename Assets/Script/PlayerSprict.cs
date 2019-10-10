@@ -129,6 +129,11 @@ public class PlayerSprict : MonoBehaviour
             if (Input.GetMouseButton(2) && grabGameObjects.Count > 0)
             {
                 isExplosion = true;
+                foreach (GameObject go in grabGameObjects)
+                {
+                    NikuScript niku = go.GetComponent<NikuScript>();
+                    if (niku) { niku.Yakiniku(); }
+                }
             }
         }
         else {
