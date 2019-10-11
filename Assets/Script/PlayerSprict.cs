@@ -89,7 +89,7 @@ public class PlayerSprict : MonoBehaviour
                             score += 9; scoreManager.AddFastKillCnt();
                             //エフェクト
                             Text text = Instantiate(moveText);
-                            text.transform.parent = scoreManager.gameObject.transform;
+                            text.transform.SetParent(scoreManager.gameObject.transform);
                             MovingText txt = text.GetComponent<MovingText>();
                             txt.Init("FastKill +9", hit.rigidbody.position);
                             txt.ReverxeDirection();
@@ -99,7 +99,7 @@ public class PlayerSprict : MonoBehaviour
                             score += 2; scoreManager.AddGiriGiriKillCnt();
                             //エフェクト
                             Text text = Instantiate(moveText);
-                            text.transform.parent = scoreManager.gameObject.transform;
+                            text.transform.SetParent(scoreManager.gameObject.transform);
                             text.GetComponent<MovingText>().Init("GiriGiri +2", hit.rigidbody.position);
                         }
                         //加算

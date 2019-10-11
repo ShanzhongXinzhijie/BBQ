@@ -96,7 +96,7 @@ public class NikuScript : MonoBehaviour
             Destroy(gameObject.transform.GetChild(0).gameObject);
 
             GameObject newModel = Instantiate(yakiniku);
-            newModel.transform.parent = gameObject.transform;
+            newModel.transform.SetParent(gameObject.transform);
             newModel.transform.localPosition = pos;
             newModel.transform.localRotation = rot;
             newModel.transform.localScale = scale;
