@@ -7,6 +7,10 @@ public class TongController : MonoBehaviour
     public GameObject tangPoint;//掴んだ肉を配置する位置
     public GameObject fireEffect;//炎エフェクト
 
+    AudioSource m_AudioSource;
+    public AudioClip m_fireSound;
+    public AudioClip m_gunSound;
+
     GameObject fire;
 
     bool isShooting = false;
@@ -20,6 +24,8 @@ public class TongController : MonoBehaviour
     void Start()
     {
         originPos = transform.localPosition;//原点初期化
+
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +36,7 @@ public class TongController : MonoBehaviour
         //トングを持つ手切り替え
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
+            m_AudioSource.PlayOneShot(m_gunSound); //効果音
             transform.localPosition = new Vector3(transform.localPosition.x  * - 1.0f, transform.localPosition.y, transform.localPosition.z);
             originPos = transform.localPosition;
             //mousePos.x -= Screen.width / 2; mousePos.y -= Screen.height / 2;
@@ -81,6 +88,8 @@ public class TongController : MonoBehaviour
         if (!fire)
         {
             fire = Instantiate(fireEffect, GetTongHandPosition(), Quaternion.identity);
+            fire.transform.localScale = Vector3.one * 2.0f;
+            m_AudioSource.PlayOneShot(m_fireSound); //効果音
         }
     }
     public void DisenchantFire()

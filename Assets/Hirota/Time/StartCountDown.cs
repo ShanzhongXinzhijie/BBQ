@@ -15,8 +15,8 @@ public class StartCountDown : MonoBehaviour
     CountDown countDown;//制限時間カウントダウンのコンポーネント
 
     //カウントでゲームが始まるときの効果音
-    AudioSource m_countStartAudioSource;
-    public AudioClip m_countStartSound;
+    //AudioSource m_countStartAudioSource;
+    //public AudioClip m_countStartSound;
 
     //音を鳴らしたかどうか
     bool m_isAudio = false;
@@ -28,7 +28,7 @@ public class StartCountDown : MonoBehaviour
         time = 4;
         countDown = GetComponent<CountDown>();
         //Componentを取得
-        m_countStartAudioSource = GetComponent<AudioSource>();
+        //m_countStartAudioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -45,7 +45,7 @@ public class StartCountDown : MonoBehaviour
         if (t == 0 && !m_isAudio)
         {
             //カウントでゲームが始まるときの音を再生
-            m_countStartAudioSource.PlayOneShot(m_countStartSound);
+            //m_countStartAudioSource.PlayOneShot(m_countStartSound);
             m_isAudio = true;
         }
 

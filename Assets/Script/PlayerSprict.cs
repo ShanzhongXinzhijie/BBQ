@@ -15,6 +15,13 @@ public class PlayerSprict : MonoBehaviour
     public float canComboTimeSec = 0.5f;//キャッチしてからコンボ可能な時間
     public float catchRenge = 6.0f;//キャッチ可能な最大距離
 
+    //肉ゲットしたときの効果音
+    AudioSource m_meatAudioSource;
+    public AudioClip m_getMeatSound;
+    public AudioClip m_lostMeatSound;
+    public AudioClip m_ConboEndSound;
+    public AudioClip m_PurgeMeatSound;
+
     float inputTime = 0.0f;//クリック入力時間
     bool isConbo = false;//コンボ中か?
 
@@ -40,6 +47,9 @@ public class PlayerSprict : MonoBehaviour
         nikuLayer = LayerMask.NameToLayer("NikuYasai");
         grabbingNikuLayer = LayerMask.NameToLayer("GrabbingNikuYasai");
         hoboDeathNikuLayer = LayerMask.NameToLayer("HoboDeathNiku");
+
+        //Componentを取得
+        m_meatAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,6 +63,7 @@ public class PlayerSprict : MonoBehaviour
             //コンボ終了
             if (inputTime > canComboTimeSec) {
                 ConboEnd();
+                if (isConbo) { m_meatAudioSource.PlayOneShot(m_ConboEndSound); }
             }
 
             //入力時間がキャッチ可能時間以内なら
@@ -115,6 +126,10 @@ public class PlayerSprict : MonoBehaviour
                     //肉の抗力変更
                     hit.rigidbody.drag = 0.0f;
 
+                    //肉をゲットしたとき音を再生
+                    m_meatAudioSource.PlayOneShot(m_getMeatSound);
+                    //Instantiate(m_effect);
+
                     //爆弾モードなら焼き肉にする
                     if (isExplosion)
                     {
@@ -139,9 +154,10 @@ public class PlayerSprict : MonoBehaviour
             }
 
             //肉をキャッチできなかった
-            if (!isCatch)
+            if (!isCatch && Input.GetMouseButtonDown(0))
             {
-
+                //肉をゲットしたとき音を再生
+                m_meatAudioSource.PlayOneShot(m_lostMeatSound);
             }
 
             //中クリックで肉を爆弾にする
@@ -163,6 +179,7 @@ public class PlayerSprict : MonoBehaviour
             ConboEnd();
 
             //肉を放す
+            if (grabGameObjects.Count > 0) { m_meatAudioSource.PlayOneShot(m_PurgeMeatSound); }
             foreach (GameObject go in grabGameObjects)
             {
                 go.layer = nikuLayer;//掴んでる肉のレイヤー戻す
