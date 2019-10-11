@@ -48,6 +48,8 @@ public class NikuScript : MonoBehaviour
         //爆発
         if (isExplosion)
         {
+            GetComponent<AudioSource>().Play();//効果音
+
             const float radius = 25.0f;
             const float power = 1000.0f;
             Vector3 explosionPos = transform.position;

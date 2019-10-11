@@ -81,6 +81,8 @@ public class TongController : MonoBehaviour
         if (!fire)
         {
             fire = Instantiate(fireEffect, GetTongHandPosition(), Quaternion.identity);
+            fire.transform.localScale = Vector3.one * 2.0f;
+            GetComponent<AudioSource>().Play();//効果音
         }
     }
     public void DisenchantFire()

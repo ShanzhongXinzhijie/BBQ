@@ -36,6 +36,8 @@ public class MatoScript : MonoBehaviour
                 Text text = Instantiate(moveText);
                 text.transform.SetParent(scoreManager.gameObject.transform);
                 text.GetComponent<MovingText>().Init(hitScore.ToString(), transform.position);
+
+                GetComponent<AudioSource>().Play();//効果音
             }
 
         }
