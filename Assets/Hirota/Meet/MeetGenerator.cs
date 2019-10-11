@@ -23,16 +23,12 @@ public class MeetGenerator : MonoBehaviour
     //時間の計測
     float m_cntTime = 0;
 
-    //エフェクトのゲームオブジェクト
-     public GameObject m_effect;
-
     //ハイスピード肉を落としたか?
     bool isSpawnHighSpeedNiku = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(m_effect);
     }
 
     // Update is called once per frame
@@ -86,7 +82,6 @@ public class MeetGenerator : MonoBehaviour
         {
             //肉を生成
             GameObject go = Instantiate(m_meet, m_meetPos, Random.rotation);
-            Instantiate(m_effect, m_meetPos, Quaternion.identity);
             //ランダムで焼き肉にする
             if (Random.Range(0,1+1) > 0)
             {
