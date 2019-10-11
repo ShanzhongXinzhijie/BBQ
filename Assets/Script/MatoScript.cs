@@ -9,6 +9,8 @@ public class MatoScript : MonoBehaviour
     public int hitScore = -1000000;//この的の点数
     public Text moveText;
 
+    public GameObject se;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,11 @@ public class MatoScript : MonoBehaviour
                 text.transform.SetParent(scoreManager.gameObject.transform);
                 text.GetComponent<MovingText>().Init(hitScore.ToString(), transform.position);
 
-                GetComponent<AudioSource>().Play();//効果音
+                //GetComponent<AudioSource>().Play();//効果音
+
+                Instantiate(se);                
+
+                Destroy(gameObject);
             }
 
         }
