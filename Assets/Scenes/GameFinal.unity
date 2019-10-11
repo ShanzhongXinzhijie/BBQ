@@ -1949,6 +1949,7 @@ MonoBehaviour:
   deathText: {fileID: 1927668284}
   scoreText: {fileID: 2026711619}
   conboText: {fileID: 1114754399}
+  conboText2: {fileID: 867881522}
 --- !u!114 &1167354474
 MonoBehaviour:
   m_ObjectHideFlags: 0
