@@ -23,10 +23,13 @@ public class MeetGenerator : MonoBehaviour
     //時間の計測
     float m_cntTime = 0;
 
+    //エフェクトのゲームオブジェクト
+     public GameObject m_effect;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Instantiate(m_effect);
     }
 
     // Update is called once per frame
@@ -61,6 +64,7 @@ public class MeetGenerator : MonoBehaviour
         {
             //肉を生成
             Instantiate(m_meet, m_meetPos, Random.rotation);
+            Instantiate(m_effect, m_meetPos, Quaternion.identity);
             //秒数をリセット
             m_cntTime = 0.0f;
         }
