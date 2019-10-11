@@ -19,7 +19,7 @@ public struct ResultData
 
 public class ScoreDrawer : MonoBehaviour
 {
-    public Text livingText, deathText, scoreText, conboText;
+    public Text livingText, deathText, scoreText, conboText, conboText2;
 
     static ResultData resultData;
     public static ResultData GetResultData()
@@ -56,7 +56,16 @@ public class ScoreDrawer : MonoBehaviour
         livingText.text = resultData.livingMeet.ToString() + "肉生存";
         deathText.text = resultData.deathMeet.ToString() + "肉死亡";
         scoreText.text = "SCORE : " + resultData.score.ToString();
-        conboText.text = conboNum.ToString();
+        if (conboNum > 1)
+        {
+            conboText.text = conboNum.ToString();
+            conboText2.text = "CONBO!!";
+        }
+        else
+        {
+            conboText.text = "";
+            conboText2.text = "NICE KILL!";
+        }
     }
 
     /// <summary>
@@ -73,7 +82,7 @@ public class ScoreDrawer : MonoBehaviour
     public void AddConbo()
     {
         conboNum++;
-        if (conboNum > 1)
+        if (conboNum >= 1)
         {
             conboText.gameObject.SetActive(true);
         }
@@ -120,7 +129,7 @@ public class ScoreDrawer : MonoBehaviour
     {
         resultData.deathMeet++;
     }
-    public void SubDeathMeetCount()
+    static public void SubDeathMeetCount()
     {
         resultData.deathMeet--;
     }

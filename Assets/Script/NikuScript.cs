@@ -48,7 +48,7 @@ public class NikuScript : MonoBehaviour
         //爆発
         if (isExplosion)
         {
-            const float radius = 50.0f;
+            const float radius = 25.0f;
             const float power = 1000.0f;
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -61,6 +61,11 @@ public class NikuScript : MonoBehaviour
                 }
                 if (hit.gameObject.layer == deathNikuLayer || hit.gameObject.layer == hoboDeathNikuLayer)
                 {
+                    //吹っ飛ぶので蘇生
+                    hit.gameObject.layer = nikuLayer;
+                    ScoreDrawer.SubDeathMeetCount();
+
+                    //焼かれる
                     NikuScript niku = hit.GetComponent<NikuScript>();
                     if (niku != null)
                     {
@@ -91,7 +96,7 @@ public class NikuScript : MonoBehaviour
             Destroy(gameObject.transform.GetChild(0).gameObject);
 
             GameObject newModel = Instantiate(yakiniku);
-            newModel.transform.parent = gameObject.transform;
+            newModel.transform.SetParent(gameObject.transform);
             newModel.transform.localPosition = pos;
             newModel.transform.localRotation = rot;
             newModel.transform.localScale = scale;

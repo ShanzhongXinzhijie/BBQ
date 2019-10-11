@@ -26,6 +26,9 @@ public class MeetGenerator : MonoBehaviour
     //エフェクトのゲームオブジェクト
      public GameObject m_effect;
 
+    //ハイスピード肉を落としたか?
+    bool isSpawnHighSpeedNiku = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,14 +62,40 @@ public class MeetGenerator : MonoBehaviour
             m_meetPos.z += meetAdd;
         }
 
+        //ハイスピード肉の生成
+        if (!isSpawnHighSpeedNiku && m_cntTime > 0.5f)
+        {
+            //    isSpawnHighSpeedNiku = true;
+            //    GameObject go = Instantiate(m_meet, m_meetPos, Random.rotation);
+            //
+            ////ランダムで焼き肉にする
+            //if (Random.Range(0, 1) > 0)
+            //{
+            //    NikuScript nikuS = go.GetComponent<NikuScript>();
+            //    if (nikuS) { nikuS.Yakiniku(); }
+            //}
+            //    Rigidbody rigidbody = go.GetComponent<Rigidbody>();
+            //    if (rigidbody)
+            //    {
+            //        rigidbody.drag = 0.0f;//抗力をゼロに
+            //    }
+        }
+
         //5秒経ったら
         if (m_cntTime > 1.0f)
         {
             //肉を生成
-            Instantiate(m_meet, m_meetPos, Random.rotation);
+            GameObject go = Instantiate(m_meet, m_meetPos, Random.rotation);
             Instantiate(m_effect, m_meetPos, Quaternion.identity);
+            //ランダムで焼き肉にする
+            if (Random.Range(0,1+1) > 0)
+            {
+                NikuScript nikuS = go.GetComponent<NikuScript>();
+                if (nikuS) { nikuS.Yakiniku(); }
+            }
             //秒数をリセット
             m_cntTime = 0.0f;
+            isSpawnHighSpeedNiku = false;
         }
     }
 }
