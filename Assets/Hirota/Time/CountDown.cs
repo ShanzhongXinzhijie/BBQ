@@ -53,6 +53,8 @@ public class CountDown : MonoBehaviour
     /// </summary>
     IEnumerator GameEnd()
     {
+        GetComponent<AudioSource>().Play();
+
         //メインカメラを子オブジェクトじゃなくす
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera.transform.parent = null;
