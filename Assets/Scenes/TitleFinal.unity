@@ -22432,7 +22432,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BBS
+  m_Text: 'BBS
+
+    +'
 --- !u!222 &1949822465
 CanvasRenderer:
   m_ObjectHideFlags: 0
