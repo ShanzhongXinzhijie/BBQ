@@ -3086,10 +3086,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132081273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640be9e440bf65b489efc75c6bf6ef6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 041f834cca7464e479ba554052080b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_meet: {fileID: 2449933405333714879, guid: 24e708f6782a76847be8d57d83969c19, type: 3}
+  m_meet: {fileID: 2449933406051356754}
+  fireEffect: {fileID: 0}
 --- !u!4 &2132081275
 Transform:
   m_ObjectHideFlags: 0
@@ -3330,6 +3331,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e708f6782a76847be8d57d83969c19, type: 3}
+--- !u!1 &2449933406051356754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2449933405333714879, guid: 24e708f6782a76847be8d57d83969c19,
+    type: 3}
+  m_PrefabInstance: {fileID: 2449933406051356753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2467649871830003652
 PrefabInstance:
   m_ObjectHideFlags: 0

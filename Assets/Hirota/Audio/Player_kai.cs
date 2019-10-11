@@ -119,6 +119,7 @@ public class Player_kai : MonoBehaviour
                     //肉をゲットしたとき音を再生
                     m_meatAudioSource.PlayOneShot(m_getMeatSound);
 
+
                     //入力時間リセット
                     inputTime = 0.0f;
                     //コンボ中にする

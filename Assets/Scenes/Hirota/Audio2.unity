@@ -841,6 +841,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d78a2e248940d3a4b8b981200477cd53,
+        type: 3}
+      propertyPath: m_Name
+      value: human2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d78a2e248940d3a4b8b981200477cd53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d78a2e248940d3a4b8b981200477cd53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -910,16 +920,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 7.525507
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d78a2e248940d3a4b8b981200477cd53,
-        type: 3}
-      propertyPath: m_Name
-      value: human2
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d78a2e248940d3a4b8b981200477cd53,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d78a2e248940d3a4b8b981200477cd53, type: 3}
@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerPosY: 2.58
+  m_slideSound: {fileID: 0}
+  m_horizonSound: {fileID: 0}
 --- !u!1 &666935498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1187,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 484d061e06f68ef49bed77bf33d7f832,
+        type: 3}
+      propertyPath: m_Name
+      value: human1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 484d061e06f68ef49bed77bf33d7f832,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 484d061e06f68ef49bed77bf33d7f832,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1254,16 +1266,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 7.525507
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 484d061e06f68ef49bed77bf33d7f832,
-        type: 3}
-      propertyPath: m_Name
-      value: human1
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 484d061e06f68ef49bed77bf33d7f832,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 484d061e06f68ef49bed77bf33d7f832, type: 3}
@@ -2093,6 +2095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tangPoint: {fileID: 2136649369}
+  fireEffect: {fileID: 0}
 --- !u!1 &1167354468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2237,7 @@ MonoBehaviour:
   m_timeText: {fileID: 1222287141}
   activeGameObject:
   - {fileID: 2132081273}
+  m_countStartSound: {fileID: 0}
 --- !u!114 &1167354475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2458,6 +2462,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 2fe4f07580ee824439df3e26db6f9836,
+        type: 3}
+      propertyPath: m_Name
+      value: human3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2fe4f07580ee824439df3e26db6f9836,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2fe4f07580ee824439df3e26db6f9836,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2527,16 +2541,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 7.525507
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 2fe4f07580ee824439df3e26db6f9836,
-        type: 3}
-      propertyPath: m_Name
-      value: human3
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 2fe4f07580ee824439df3e26db6f9836,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe4f07580ee824439df3e26db6f9836, type: 3}
@@ -2624,6 +2628,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: ab833b8e924f8fd469ac012f8601ba16,
+        type: 3}
+      propertyPath: m_Name
+      value: human0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ab833b8e924f8fd469ac012f8601ba16,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ab833b8e924f8fd469ac012f8601ba16,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2693,16 +2707,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 7.525507
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ab833b8e924f8fd469ac012f8601ba16,
-        type: 3}
-      propertyPath: m_Name
-      value: human0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ab833b8e924f8fd469ac012f8601ba16,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab833b8e924f8fd469ac012f8601ba16, type: 3}
@@ -2967,6 +2971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tangPoint: {fileID: 2136649369}
+  fireEffect: {fileID: 1271764609937064, guid: 8b47f39d91e61384889cff33839361dc, type: 3}
 --- !u!1001 &1820334940
 PrefabInstance:
   m_ObjectHideFlags: 0
