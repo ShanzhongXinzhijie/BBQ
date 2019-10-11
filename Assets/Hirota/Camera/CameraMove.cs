@@ -36,6 +36,8 @@ public class CameraMove : MonoBehaviour
         new Vector3(0.0f, -90.0f, 0.0f),
     };
 
+    public GameObject[] cupcelCol;
+
     //回転の種類
     int m_kaitenNumber = 0;
 
@@ -116,6 +118,19 @@ public class CameraMove : MonoBehaviour
             //横に動いたとき音を再生
             m_moveAudioSource.PlayOneShot(m_horizonSound);
         }
+
+        
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == m_playerPosNumber)
+            {
+                cupcelCol[i].SetActive(true);
+            }
+            else {
+                cupcelCol[i].SetActive(false);
+            }
+        }
+
 
         //カメラの更新
         gameObject.transform.position = m_playerPos[m_playerPosNumber];
