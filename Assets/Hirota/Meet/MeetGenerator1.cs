@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeetGenerator : MonoBehaviour
+public class MeetGenerator1 : MonoBehaviour
 {
     //肉
     public GameObject m_meet;
@@ -25,6 +25,10 @@ public class MeetGenerator : MonoBehaviour
 
     //ハイスピード肉を落としたか?
     bool isSpawnHighSpeedNiku = false;
+
+    public GameObject fireEffect;//炎エフェクト
+
+    GameObject meat;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +95,31 @@ public class MeetGenerator : MonoBehaviour
             //秒数をリセット
             m_cntTime = 0.0f;
             isSpawnHighSpeedNiku = false;
+        }
+        //ファイアエフェクト位置
+        if (meat)
+        {
+            meat.transform.position = GetMeatPosition();
+        }
+    }
+    //トングの先端座標取得
+    public Vector3 GetMeatPosition()
+    {
+        return m_meet.transform.position;
+    }
+    //エンチャントファイア
+    public void EnchantFire()
+    {
+        if (!meat)
+        {
+            meat = Instantiate(fireEffect, GetMeatPosition(), Quaternion.identity);
+        }
+    }
+    public void DisenchantFire()
+    {
+        if (meat)
+        {
+            Destroy(meat);
         }
     }
 }

@@ -37,8 +37,6 @@ public class Player_kai : MonoBehaviour
     public AudioClip m_getMeatSound;
     public AudioClip m_lostMeatSound;
 
-    public GameObject m_effect;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -120,7 +118,7 @@ public class Player_kai : MonoBehaviour
                     ////追加////
                     //肉をゲットしたとき音を再生
                     m_meatAudioSource.PlayOneShot(m_getMeatSound);
-                    Instantiate(m_effect);
+
 
                     //入力時間リセット
                     inputTime = 0.0f;
