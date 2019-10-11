@@ -156,7 +156,7 @@ public class ScoreDrawer : MonoBehaviour
                 resultData.matoCnt100000++;
                 break;
             default:
-                Debug.LogError("何だこの的は");
+                //Debug.LogError("何だこの的は");
                 break;
         }
     }

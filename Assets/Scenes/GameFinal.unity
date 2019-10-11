@@ -1564,17 +1564,17 @@ PrefabInstance:
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 46.24
+      value: 46.8
       objectReference: {fileID: 0}
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
@@ -1619,12 +1619,12 @@ PrefabInstance:
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467649869955396096, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467649869955396097, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
@@ -1634,13 +1634,13 @@ PrefabInstance:
     - target: {fileID: 2467649869955396097, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: hitScore
-      value: 100000
+      value: -536870912
       objectReference: {fileID: 0}
     - target: {fileID: 521560257958989478, guid: 7bf4cfbe180386a4cab26fbae7acccfa,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 79035c45e04a555499e582f58b1b826c, type: 3}
+      objectReference: {fileID: 8300000, guid: 654f7219364bc6e4b9ea722338a807c5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bf4cfbe180386a4cab26fbae7acccfa, type: 3}
 --- !u!1 &773301471
