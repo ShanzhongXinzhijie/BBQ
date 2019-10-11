@@ -145,7 +145,7 @@ public class PlayerSprict : MonoBehaviour
             }
 
             //中クリックで肉を爆弾にする
-            if ((Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && grabGameObjects.Count > 0)
+            if (!isExplosion && (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && grabGameObjects.Count > 0)
             {
                 isExplosion = true;
                 foreach (GameObject go in grabGameObjects)
@@ -153,6 +153,7 @@ public class PlayerSprict : MonoBehaviour
                     NikuScript niku = go.GetComponent<NikuScript>();
                     if (niku) { niku.Yakiniku(); }
                 }
+                tong.EnchantFire();
             }
         }
         else {
@@ -175,6 +176,7 @@ public class PlayerSprict : MonoBehaviour
             grabRigidBodys.Clear();//リストをクリア
             grabGameObjects.Clear();
             isExplosion = false;
+            tong.DisenchantFire();
         }
 
         //掴んだ肉の位置を固定

@@ -5,6 +5,9 @@ using UnityEngine;
 public class TongController : MonoBehaviour
 {
     public GameObject tangPoint;//掴んだ肉を配置する位置
+    public GameObject fireEffect;//炎エフェクト
+
+    GameObject fire;
 
     bool isShooting = false;
     float shotTime = 0.0f;
@@ -51,6 +54,12 @@ public class TongController : MonoBehaviour
         {
             transform.localPosition = originPos;
         }
+
+        //ファイアエフェクト位置
+        if (fire)
+        {
+            fire.transform.position = GetTongHandPosition();
+        }
     }
 
     //射撃アニメーションする
@@ -64,5 +73,21 @@ public class TongController : MonoBehaviour
     public Vector3 GetTongHandPosition()
     {
         return tangPoint.transform.position;
+    }
+
+    //エンチャントファイア
+    public void EnchantFire()
+    {
+        if (!fire)
+        {
+            fire = Instantiate(fireEffect, GetTongHandPosition(), Quaternion.identity);
+        }
+    }
+    public void DisenchantFire()
+    {
+        if (fire)
+        {
+            Destroy(fire);
+        }
     }
 }
