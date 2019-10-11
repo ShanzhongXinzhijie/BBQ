@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSprict : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerSprict : MonoBehaviour
     public TongController tong;//トング
     public ScoreDrawer scoreManager;//スコアを管理するクラス
     public GameObject dysonText;//ダイソンモード時に有効化するオブジェクト
+    public Text moveText;//エフェクトテキスト
 
     public float canCatchTimeSec = 0.125f;//クリックしてからキャッチ可能な時間
     public float canComboTimeSec = 0.5f;//キャッチしてからコンボ可能な時間
@@ -84,11 +86,21 @@ public class PlayerSprict : MonoBehaviour
                         const float nikuHeightMin = 1.0f;       //低いところの敷居
                         if (hit.rigidbody.position.y > nikuHeightMax)//高いところで取った
                         {
-                            score += 4; scoreManager.AddFastKillCnt();
+                            score += 9; scoreManager.AddFastKillCnt();
+                            //エフェクト
+                            Text text = Instantiate(moveText);
+                            text.transform.parent = scoreManager.gameObject.transform;
+                            MovingText txt = text.GetComponent<MovingText>();
+                            txt.Init("FastKill +9", hit.rigidbody.position);
+                            txt.ReverxeDirection();
                         }
                         if (hit.rigidbody.position.y < nikuHeightMin)//地面スレスレで取った
                         {
                             score += 2; scoreManager.AddGiriGiriKillCnt();
+                            //エフェクト
+                            Text text = Instantiate(moveText);
+                            text.transform.parent = scoreManager.gameObject.transform;
+                            text.GetComponent<MovingText>().Init("GiriGiri +2", hit.rigidbody.position);
                         }
                         //加算
                         scoreManager.AddScore(score);

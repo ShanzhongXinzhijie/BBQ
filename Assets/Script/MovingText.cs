@@ -7,6 +7,7 @@ public class MovingText : MonoBehaviour
 {
     float time = 0.0f;
     RectTransform rectTransform;
+    float moveDir = 1.0f;
 
     void Awake()
     {
@@ -17,6 +18,10 @@ public class MovingText : MonoBehaviour
     {
         GetComponent<Text>().text = text;
         rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, position);
+    }
+    public void ReverxeDirection()
+    {
+        moveDir *= -1.0f;
     }
 
     // Start is called before the first frame update
@@ -30,7 +35,7 @@ public class MovingText : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        rectTransform.position = new Vector3(rectTransform.position.x, rectTransform.position.y + Time.deltaTime*100.0f, rectTransform.position.z);
+        rectTransform.position = new Vector3(rectTransform.position.x, rectTransform.position.y + Time.deltaTime*100.0f* moveDir, rectTransform.position.z);
 
         if(time > 1.0f)
         {

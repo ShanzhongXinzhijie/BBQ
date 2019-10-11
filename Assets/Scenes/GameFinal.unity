@@ -961,6 +961,8 @@ MonoBehaviour:
   tong: {fileID: 1156539856}
   scoreManager: {fileID: 1167354473}
   dysonText: {fileID: 1114972003}
+  moveText: {fileID: 1055213382355955224, guid: 2b20ab251280d944d9967a8cbe6e48e8,
+    type: 3}
   canCatchTimeSec: 0.115
   canComboTimeSec: 1.25
   catchRenge: 6
