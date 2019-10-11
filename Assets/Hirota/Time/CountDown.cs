@@ -7,8 +7,11 @@ using UnityEngine.SceneManagement;
 public class CountDown : MonoBehaviour
 {
     public ScoreDrawer scoreManager;
+    //Textのゲームオブジェクト
     public Text m_timeText;
+    //経過時間
     public static float time;
+    
     void Start()
     {
         time = 60;

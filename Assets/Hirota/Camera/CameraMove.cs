@@ -42,6 +42,11 @@ public class CameraMove : MonoBehaviour
     //動いたかどうか
     bool m_isMove = false;
 
+    //カメラが動いたときの効果音
+    AudioSource m_moveAudioSource;
+    public AudioClip m_slideSound;
+    public AudioClip m_horizonSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +55,9 @@ public class CameraMove : MonoBehaviour
         {
             m_playerPos[i].y = m_playerPosY;
         }
+        
+        //Componentを取得
+        m_moveAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -68,7 +76,9 @@ public class CameraMove : MonoBehaviour
                 m_playerPosNumber -= 2;
             }
             m_kaitenNumber = 1;
-            m_isMove = true;
+            m_isMove = true;////追加////
+            //スライディングしたとき音を再生
+            m_moveAudioSource.PlayOneShot(m_slideSound);
         }
 
         //左方向
@@ -84,6 +94,9 @@ public class CameraMove : MonoBehaviour
             }
             m_kaitenNumber = 2;
             m_isMove = true;
+
+            //横に動いたとき音を再生
+            m_moveAudioSource.PlayOneShot(m_horizonSound);
         }
         
         //右方向
@@ -99,6 +112,9 @@ public class CameraMove : MonoBehaviour
             }
             m_kaitenNumber = 3;
             m_isMove = true;
+
+            //横に動いたとき音を再生
+            m_moveAudioSource.PlayOneShot(m_horizonSound);
         }
 
         //カメラの更新
