@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class CountDown : MonoBehaviour
 {
     public ScoreDrawer scoreManager;
-    //Textのゲームオブジェクト
-    public Text m_timeText;
-    //経過時間
+    public Text m_timeText, m_owariText;
     public static float time;
-    
+
+    public GameObject[] inactiveGameObject;//カウントダウン終了時に無効化するゲームオブジェクト
+
+    bool isEnded = false;
+
     void Start()
     {
         time = 60;
@@ -23,6 +25,8 @@ public class CountDown : MonoBehaviour
     }
     void Update()
     {
+        if (isEnded) { return; }
+
         if (time > -1)
         {
             time -= Time.deltaTime;
@@ -32,8 +36,9 @@ public class CountDown : MonoBehaviour
         //ゲーム終了
         if (time < 0.0f)
         {
-            scoreManager.GameEnd();//スコア計測
-            SceneManager.LoadScene("ResultFinal");
+            isEnded = true;
+            //コルーチンでゲーム終了
+            StartCoroutine("GameEnd");
         }
     }
 
@@ -41,6 +46,43 @@ public class CountDown : MonoBehaviour
     {
         int t = Mathf.FloorToInt(time);
         m_timeText.text = "Time:" + t;
+    }
+
+    /// <summary>
+    /// 数秒後ゲーム終了(コルーチン)
+    /// </summary>
+    IEnumerator GameEnd()
+    {
+        //メインカメラを子オブジェクトじゃなくす
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera.transform.parent = null;
+
+        //登録されているゲームオブジェクトを無効化
+        foreach (GameObject go in inactiveGameObject)
+        {
+            go.SetActive(false);
+        }
+
+        //テキスト表示
+        m_owariText.gameObject.SetActive(true);
+        m_owariText.transform.localScale = Vector3.zero;
+       
+        //テキスト拡大
+        for (int i = 0; i < 20; i++)
+        {
+            //テキスト拡大
+            m_owariText.transform.localScale += Vector3.one * 0.1f;
+            //0.1秒停止
+            yield return new WaitForSeconds(0.1f);           
+        }
+
+        //2.5秒停止
+        yield return new WaitForSeconds(2.5f);
+
+        //スコア計測
+        scoreManager.GameEnd();
+        //シーン切り替え
+        SceneManager.LoadScene("ResultFinal");
     }
 
 }

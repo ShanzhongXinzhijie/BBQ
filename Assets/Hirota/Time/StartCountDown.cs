@@ -20,6 +20,9 @@ public class StartCountDown : MonoBehaviour
 
     //音を鳴らしたかどうか
     bool m_isAudio = false;
+
+    bool isStarted = false;
+
     void Start()
     {
         time = 4;
@@ -29,6 +32,8 @@ public class StartCountDown : MonoBehaviour
     }
     void Update()
     {
+        if (isStarted) { return; }
+
         if (time > 1)
         {
             time -= Time.deltaTime;
@@ -46,6 +51,7 @@ public class StartCountDown : MonoBehaviour
 
         if (t == 0)
         {
+            isStarted = true;
             m_timeText.text = "始めろ";
             //コルーチンでゲーム開始
             StartCoroutine("GameStart");

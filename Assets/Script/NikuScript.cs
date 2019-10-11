@@ -83,16 +83,19 @@ public class NikuScript : MonoBehaviour
 
         isYakiniku = true;
 
-        Vector3 pos = gameObject.transform.GetChild(0).gameObject.transform.localPosition;
-        Quaternion rot = gameObject.transform.GetChild(0).gameObject.transform.localRotation;
-        Vector3 scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
-        Destroy(gameObject.transform.GetChild(0).gameObject);
+        if (gameObject.transform.childCount > 0)
+        {
+            Vector3 pos = gameObject.transform.GetChild(0).gameObject.transform.localPosition;
+            Quaternion rot = gameObject.transform.GetChild(0).gameObject.transform.localRotation;
+            Vector3 scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
+            Destroy(gameObject.transform.GetChild(0).gameObject);
 
-        GameObject newModel = Instantiate(yakiniku);
-        newModel.transform.parent = gameObject.transform;
-        newModel.transform.localPosition = pos;
-        newModel.transform.localRotation = rot;
-        newModel.transform.localScale = scale;
+            GameObject newModel = Instantiate(yakiniku);
+            newModel.transform.parent = gameObject.transform;
+            newModel.transform.localPosition = pos;
+            newModel.transform.localRotation = rot;
+            newModel.transform.localScale = scale;
+        }
     }
 
     /// <summary>
