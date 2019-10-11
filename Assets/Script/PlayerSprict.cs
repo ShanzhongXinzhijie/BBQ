@@ -103,6 +103,13 @@ public class PlayerSprict : MonoBehaviour
                     //肉の抗力変更
                     hit.rigidbody.drag = 0.0f;
 
+                    //爆弾モードなら焼き肉にする
+                    if (isExplosion)
+                    {
+                        NikuScript niku = hit.collider.gameObject.GetComponent<NikuScript>();
+                        if (niku) { niku.Yakiniku(); }                        
+                    }
+
                     //入力時間リセット
                     inputTime = 0.0f;
                     //コンボ中にする
@@ -126,7 +133,7 @@ public class PlayerSprict : MonoBehaviour
             }
 
             //中クリックで肉を爆弾にする
-            if (Input.GetMouseButton(2) && grabGameObjects.Count > 0)
+            if ((Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && grabGameObjects.Count > 0)
             {
                 isExplosion = true;
                 foreach (GameObject go in grabGameObjects)

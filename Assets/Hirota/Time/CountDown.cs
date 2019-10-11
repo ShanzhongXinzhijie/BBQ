@@ -76,8 +76,8 @@ public class CountDown : MonoBehaviour
             yield return new WaitForSeconds(0.1f);           
         }
 
-        //2.5秒停止
-        yield return new WaitForSeconds(2.5f);
+        //2.0秒停止
+        yield return new WaitForSeconds(2.0f);
 
         //スコア計測
         scoreManager.GameEnd();

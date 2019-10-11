@@ -24,8 +24,8 @@ public class TongController : MonoBehaviour
     {
         //マウスが狙うところにトングを向ける
         Vector3 mousePos = Input.mousePosition;
-        //右クリックでトングを持つ手切り替え
-        if (Input.GetMouseButtonDown(1))
+        //トングを持つ手切り替え
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
             transform.localPosition = new Vector3(transform.localPosition.x  * - 1.0f, transform.localPosition.y, transform.localPosition.z);
             originPos = transform.localPosition;

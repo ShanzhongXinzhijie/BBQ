@@ -120,7 +120,7 @@ public class ScoreDrawer : MonoBehaviour
     {
         resultData.deathMeet++;
     }
-    public void SubDeathMeetCount()
+    static public void SubDeathMeetCount()
     {
         resultData.deathMeet--;
     }
